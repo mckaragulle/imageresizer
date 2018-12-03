@@ -13,7 +13,7 @@ class LaratrustServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/imageresizer.php' => config_path('imageresizer.php')
-        ], 'config');
+        ], 'imageresizer');
     }
 
     /**
