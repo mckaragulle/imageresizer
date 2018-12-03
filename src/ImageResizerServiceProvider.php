@@ -11,9 +11,7 @@ class LaratrustServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/config/imageresizer.php' => config_path('imageresizer.php')
-        ], 'imageresizer');
+		$this->publishes([__DIR__.'/config/imageresizer.php' => config_path('imageresizer.php')], 'imageresizer');
     }
 
     /**
@@ -23,6 +21,6 @@ class LaratrustServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+		$this->mergeConfigFrom(__DIR__.'/config/imageresizer.php','imageresizer');
     }
 }
