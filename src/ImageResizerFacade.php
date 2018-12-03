@@ -1,17 +1,6 @@
 <?php
-
 namespace ImageResizer;
-
-/**
- * This file is part of Laratrust,
- * a role & permission management solution for Laravel.
- *
- * @license MIT
- * @package Laratrust
- */
-
 use Illuminate\Support\Facades\Facade;
-
 class ImageResizerFacade extends Facade
 {
     /**

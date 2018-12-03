@@ -22,5 +22,8 @@ class LaratrustServiceProvider extends ServiceProvider
     public function register()
     {
 		$this->mergeConfigFrom(__DIR__.'/config/imageresizer.php','imageresizer');
+		$this->app->bind('imageresizer', function ($app) {
+            return new ImageResizer($app);
+        });
     }
 }
