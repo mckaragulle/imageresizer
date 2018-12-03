@@ -1,9 +1,5 @@
 {
     "name": "karagulle/imageresizer",
-    "require": {
-        "intervention/image": "^2.4",
-        "intervention/imagecache": "^2.3"
-    },
     "authors": [
         {
             "name": "Mustafa Celalettin KARAGÜLLE",
