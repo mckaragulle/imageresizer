@@ -1,7 +1,7 @@
 <?php
-namespace ImageResizer;
+namespace Karagulle\ImageResizer;
 use Illuminate\Support\ServiceProvider;
-class LaratrustServiceProvider extends ServiceProvider
+class ImageResizerServiceProvider extends ServiceProvider
 {
 
     /**
@@ -11,7 +11,11 @@ class LaratrustServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$this->publishes([__DIR__.'/config/imageresizer.php' => config_path('imageresizer.php')], 'imageresizer');
+		$this->publishes(
+            // Keep the config_path() empty, so the config file will be published directly to the config directory
+                [__DIR__ . '/config' => config_path()],
+                'config'
+            );
     }
 
     /**
@@ -21,9 +25,10 @@ class LaratrustServiceProvider extends ServiceProvider
      */
     public function register()
     {
-		$this->mergeConfigFrom(__DIR__.'/config/imageresizer.php','imageresizer');
-		$this->app->bind('imageresizer', function ($app) {
-            return new ImageResizer($app);
+		$this->app->bind('imageresizer', function() {
+            return new ImageResizer();
         });
+
+        $this->mergeConfigFrom(__DIR__ . '/config/imageresizer.php', 'imageresizer');
     }
 }
