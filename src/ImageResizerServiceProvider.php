@@ -11,9 +11,12 @@ class ImageResizerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-		$this->publishes([
-            __DIR__.'/config/imageresizer.php' => config_path('imageresizer.php')
-        ], 'imageresizer');
+        //config publishing
+        $this->publishes([__DIR__.'/config/imageresizer.php' => config_path('imageresizer.php')], 'imageresizer');
+        //commands publishing
+        if ($this->app->runningInConsole()) {
+            $this->commands([ImageResizer::class]);
+        }
     }
 
     /**
