@@ -1,9 +1,10 @@
 <?php
 namespace App\Console\Commands;
-use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
+use Illuminate\Support\Facades\Config;
 use Image;
 use File;
-class ImageResizer extends Command
+class ImageResizer extends GeneratorCommand
 {
     /**
      * The name and signature of the console command.
