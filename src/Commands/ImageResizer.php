@@ -46,8 +46,8 @@ class ImageResizer extends Command
         //$arguments = $this->arguments();
         $this->info('İşlem Başlıyor...');
         //Klasördeki dosyaları aldık.
-        $path_original='app/public/original';
-        $files=File::files(storage_path($path_original));
+        $path_original=config('path_original');
+        $files=File::files($path_original);
         $filecount = 0;
         if ($files !== false):
             //dosya sayısını aldık.
@@ -55,24 +55,24 @@ class ImageResizer extends Command
         endif;
         $bar = $this->output->createProgressBar($filecount);
         $bar->start();
-        $path_cache='app/public/cache_'.$w.'_'.$h;
-        if(File::exists(storage_path($path_cache))):
-            File::deleteDirectory(storage_path($path_cache));
+        $path_cache=config('path_cache').$w.'_'.$h;
+        if(File::exists($path_cache)):
+            File::deleteDirectory($path_cache);
         endif;
-        File::makeDirectory(storage_path($path_cache)); 
+        File::makeDirectory($path_cache); 
         foreach($files as $file):
             $name = pathinfo($file);
             $this->line(" İşleniyor: ".$name['basename']);
-            $img=Image::make(storage_path($path_original.'/'.$name['basename']))->orientate();
+            $img=Image::make($path_original.'/'.$name['basename'])->orientate();
             $img->resize($w, $h, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $img->save(storage_path($path_cache.'/'.$name['basename']));
+            $img->save($path_cache.'/'.$name['basename']);
 
             $cnv=Image::canvas($w, $h, '#ffffff');
-            $cnv->insert(storage_path($path_cache.'/'.$name['basename']), "center");
-            $cnv->save(storage_path($path_cache.'/'.$name['basename']));
+            $cnv->insert($path_cache.'/'.$name['basename'], "center");
+            $cnv->save($path_cache.'/'.$name['basename']);
             $bar->advance();
         endforeach;
         $bar->finish();
