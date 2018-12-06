@@ -1,0 +1,24 @@
+{
+    "name": "karagulle/imageresizer",
+    "authors": [
+        {
+            "name": "Mustafa Celalettin KARAGÜLLE",
+            "email": "mustafacelalettinkaragulle@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Karagulle\\ImageResizer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Karagulle\\ImageResizer\\ImageResizerServiceProvider"
+            ],
+            "aliases": {
+                "ImageResizer": "Karagulle\\ImageResizer\\ImageResizerFacade"
+            }
+        }
+    }
+}
